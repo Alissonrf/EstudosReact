@@ -1,33 +1,35 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const Equipe = (props) => {
-    return(
-        <div>
-            <Sobre nome = {props.nome}
-                cargo = {props.cargo}
-                idade = {props.idade}/>
-            <Social fb = {props.facebook}/>
+class Equipe extends Component{
+    render(){
+        return(
+            <div>
+                <Sobre nome = {this.props.nome} cargo = {this.props.cargo}
+                       idade = {this.props.idade}/>
+                <Social/>
+            </div>
+        )
+    }
+}
+
+class Sobre extends Component{
+    render(){
+        return(
+            <div>
+                <h2>Olá sou o(a){this.props.nome}</h2>
+                <h3>Cargo: {this.props.cargo}</h3>
+                <h3>Idade: {this.props.idade}</h3>
                 <hr/>
-        </div>
-    )
+            </div>
+        )
+    }
 }
 
-const Sobre = (props) => {
+// da para continuar utilizando componentes burros junto!!!
+const Social = () => {
     return(
         <div>
-            <h2>Olá! Sou o(a) {props.nome}</h2>
-            <h3>Cargo: {props.cargo}</h3>
-            <h3>Idade: {props.idade}</h3>
-        </div>
-    )
-}
-
-const Social = (props) => {
-    return(
-        <div>
-            <a href = {props.fb}>Facebook</a>
-            <a>Linkedin</a>
-            <a>Youtube</a>
+            <a href = "https://www.facebook.com/alison.flores.3382/">Facebook</a>
         </div>
     )
 }
@@ -36,15 +38,9 @@ function App(){
     return(
         <div>
             <h1>Conheça nossa equipe:</h1>
-            <Equipe nome = "Alisson" cargo = "Programador Trainee" idade = "18" 
-                facebook = "https://google.com"/>
-
-            <Equipe nome = "Ariadne" cargo = "Designer" idade = "20"
-                facebook = "https://google.com" />
-
-            <Equipe nome = "Gustavo" cargo = "CEO" idade = "54"
-                facebook = "https://google.com" />
-            
+            <Equipe nome = "Alisson" cargo = "Programador Trainee" idade = "18" />
+            <Equipe nome = "Ariadne" cargo = "Designer" idade = "20" />
+            <Equipe nome = "Lucas" cargo = "Dev Senior" idade = "25" />
         </div>
     );
 }
