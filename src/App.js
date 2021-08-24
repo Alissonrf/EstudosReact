@@ -1,49 +1,29 @@
-import react, {Component} from "react";
-import Membro from './components/Membro'
-// Como o arquivo se chama membro eu nao preciso especificar ele procura o index por default
+import react, {Component} from "react"
+import Feed from './components/Feed'
 
 class App extends Component{
 
     constructor(props){
         super(props)
         this.state = {
-            status: false
+            feed: [
+                {id: 1, username: "Alisson", curtidas: 20, comentarios: 12},
+                {id: 2, username: "Lucas", curtidas: 320, comentarios: 42},
+                {id: 3, username: "Caroline", curtidas: 2090, comentarios: 332},
+                {id: 4, username: "Clebinho rasta", curtidas: 1, comentarios: 1}
+            ]
         }
-
-        this.sair= this.sair.bind(this)
-        this.entrar= this.entrar.bind(this)
-    }
-
-    sair(){
-        this.setState({status: false})
-    }
-    entrar(){
-        this.setState({status: true})
     }
 
     render(){
         return(
-            // <div>
-            //     {this.state.status === 1 &&
-            //         <h1>Bem Vindo ao sistema!</h1>
-            //     }
-            //     <div>
-            //         <h2>Curso ReactJS</h2>
-            //     </div>
-            // </div>
-
-
             <div>
-                {this.state.status ? 
-                <div>
-                    <h2>Bem vindo ao sistema!</h2>
-                    <button onClick = {this.sair} >Sair do sistema</button>
-                </div> : 
-                <div> 
-                    <h2>Olá visitante, faça o login!</h2>
-                    <button onClick = {this.entrar}>Entrar no sistema</button>
-                </div>
-                }
+                {this.state.feed.map((variavel) => {
+                    return(
+                        <Feed id={variavel.id} username={variavel.username} 
+                              curtidas={variavel.curtidas} comentarios={variavel.comentarios}/>
+                    )
+                })}
             </div>
         )
 
