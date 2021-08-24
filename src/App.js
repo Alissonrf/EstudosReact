@@ -1,29 +1,56 @@
 import react, {Component} from "react"
-import Feed from './components/Feed'
 
 class App extends Component{
 
     constructor(props){
         super(props)
         this.state = {
-            feed: [
-                {id: 1, username: "Alisson", curtidas: 20, comentarios: 12},
-                {id: 2, username: "Lucas", curtidas: 320, comentarios: 42},
-                {id: 3, username: "Caroline", curtidas: 2090, comentarios: 332},
-                {id: 4, username: "Clebinho rasta", curtidas: 1, comentarios: 1}
-            ]
+            email: "",
+            senha: "",
+            sexo: "masculino"
         }
+        this.trocaEmail = this.trocaEmail.bind(this)
+        this.trocaSexo = this.trocaSexo.bind(this)
+    }
+
+    // funcao que faz a troca do valor do email utilizando target value
+    trocaEmail(e){
+        let valorDigitado = e.target.value
+        this.setState({email: e.target.value})
+    }
+
+    // jeitos diferentes de fazer a mesma coisa
+    trocaSexo(e){
+        this.setState({sexo: e.target.value})
     }
 
     render(){
         return(
             <div>
-                {this.state.feed.map((variavel) => {
-                    return(
-                        <Feed id={variavel.id} username={variavel.username} 
-                              curtidas={variavel.curtidas} comentarios={variavel.comentarios}/>
-                    )
-                })}
+                <h2>Login</h2>
+
+                Email:
+                {/* onChange serve para alterar o valor do Email */}
+                <input type="email" name="email" value={this.state.email} 
+                        onChange={this.trocaEmail} /> <br/>
+
+                Senha:
+                {/* onChange escrito em linha embora seja menos utilizado */}
+                <input type="password" name="senha" value={this.state.senha}
+                        onChange={(e)=> this.setState({senha: e.target.value})} /> <br/>
+
+                Sexo:
+                <select name="sexo" value={this.state.sexo} onChange={this.trocaSexo}>
+                    <option value="masculino">Masculino</option>
+                    <option value="feminino">Feminino</option>
+                </select>
+                
+                <div>
+                    <h3>{this.state.email}</h3>
+                    <h3>{this.state.senha}</h3>
+                    <h3>{this.state.sexo}</h3>
+                </div>
+
             </div>
         )
 
